@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clipToPadding="false">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/RootLayout">
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardUseCompatPadding="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="高槻"
+                        android:id="@+id/TakatukiTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center_vertical"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/TakatukiText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/TakatukiTitle"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center_vertical"
+                        android:singleLine="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="富田"
+                        android:id="@+id/TondaTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center_vertical"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/TondaText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/TondaTitle"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center_vertical"
+                        android:singleLine="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardUseCompatPadding="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="高槻"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/TakatukiDetailText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="false"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardUseCompatPadding="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="富田"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/TondaDetailText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center_vertical"
+                    android:singleLine="false"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/BottomView"
+            android:visibility="gone" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/BottomView2"
+            android:visibility="gone" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
