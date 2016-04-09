@@ -1,0 +1,35 @@
+﻿<mui:ModernWindow x:Class="SojoBus.ModernWPF.MainWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+                  Title="SojoBus" IsTitleVisible="True"
+                  Width="334" Height="500"
+                  ContentSource="/Pages/TozanPage.xaml">
+
+    <mui:ModernWindow.TitleLinks>
+        <mui:Link DisplayName="情報" Source="/Pages/InfoPage.xaml" />
+        <mui:Link DisplayName="ヘルプ" Source="/Pages/VersionPage.xaml" />
+    </mui:ModernWindow.TitleLinks>
+    
+    <mui:ModernWindow.MenuLinkGroups>
+        <mui:LinkGroup DisplayName="簡易時刻表" >
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="登山" Source="/Pages/TozanPage.xaml" />
+                <mui:Link DisplayName="下山" Source="/Pages/GezanPage.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="詳細時刻表" >
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="登山" Source="/Pages/TozanDetailPage.xaml" />
+                <mui:Link DisplayName="下山" Source="/Pages/GezanDetailPage.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="ヘルプ" GroupKey="help">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="バージョン" Source="/Pages/VersionPage.xaml" />
+                <mui:Link DisplayName="ライセンス" Source="/Pages/LicensePage.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+    </mui:ModernWindow.MenuLinkGroups>
+
+</mui:ModernWindow>
