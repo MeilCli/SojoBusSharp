@@ -13,7 +13,7 @@ namespace SojoBus.Test.TBus {
         public BusManagerTest() { }
 
         public void Test() {
-            foreach(var bus in busManager.GetKandaiFromTonda(new DateTime(2016,4,1),-1)) {
+            foreach(var bus in busManager.GetKandaiFromTakatukiViaTonda(new DateTime(2016,4,1),-1)) {
                 Console.Out.WriteLine(bus.ToString());
             }
         }

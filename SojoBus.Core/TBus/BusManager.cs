@@ -28,6 +28,24 @@ namespace SojoBus.Core.TBus {
             return list;
         }
 
+        public List<Bus> GetKandaiFromTakatukiViaTonda(DateTime date,int take = 6) {
+            bool isSundayOrHoliday = IsSunday(date) || IsHoliday(date);
+            bool isSaturday = IsSaturday(date);
+            bool isGakki = IsGakki(date);
+            int time = toTime(date);
+            List<Bus> list = Bus.GetTakatukiKita()
+                .Where(filterHoliday(isSundayOrHoliday,isSaturday))
+                .Where(filterTime(time))
+                .Where(x => (x.Type & BusType.ToHagitani) == BusType.ToHagitani && (x.Type & BusType.ViaTonda) == BusType.ViaTonda)
+                .Where(filterGakki(isGakki))
+                .Where(filterYasumi(isGakki))
+                .Select(x=>new Tuple<Bus,Bus>(x,GetKandaiFromTonda(date,-1).Where(filterTime(x.Time)).First(y=>(y.Type & BusType.ToHagitani) == BusType.ToHagitani)))
+                .SelectMany(x=> new Bus[] { x.Item1,x.Item2 }).ToList();
+            if(take != -1)
+                list = list.Take(take).ToList();
+            return list;
+        }
+
         public List<Bus> GetKandaiFromTonda(DateTime date,int take = 3) {
             bool isSundayOrHoliday = IsSunday(date) || IsHoliday(date);
             bool isSaturday = IsSaturday(date);

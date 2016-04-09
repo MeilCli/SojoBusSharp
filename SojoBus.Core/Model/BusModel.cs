@@ -36,6 +36,11 @@ namespace SojoBus.Core.Model {
             this.PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(nameof(Bus)));
         }
 
+        public void LoadToKandaiFromTakatukiViaTonda(DateTime date,int take = -1) {
+            this.Bus = busManager.GetKandaiFromTakatukiViaTonda(date,take);
+            this.PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(nameof(Bus)));
+        }
+
         public void LoadToKandaiFromTonda(DateTime date,int take = -1) {
             this.Bus = busManager.GetKandaiFromTonda(date,take);
             this.PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(nameof(Bus)));

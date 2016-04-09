@@ -15,6 +15,7 @@ namespace SojoBus.Core.ViewModel {
         private BusModel info = new BusModel();
         private BusModel tonda = new BusModel();
         private BusModel takatuki = new BusModel();
+        private BusModel takatukiViaTonda = new BusModel();
         private BusModel tondaDetail = new BusModel();
         private BusModel takatukiDetail = new BusModel();
         private DateTime date {
@@ -42,6 +43,9 @@ namespace SojoBus.Core.ViewModel {
         public ReadOnlyReactiveProperty<string> Takatuki { get; }
         public ReactiveCommand LoadToKanadaiFromTakatuki { get; }
         public ReactiveCommand LoadToTakatukiFromKandai { get; }
+
+        public ReadOnlyReactiveProperty<string> TakatukiViaTonda { get; }
+        public ReactiveCommand LoadToKanadaiFromTakatukiViaTonda { get; }
 
         public ReadOnlyReactiveProperty<string> TondaDetail { get; }
         public ReactiveCommand LoadToKandaiFromTondaDetail { get; }
@@ -73,6 +77,10 @@ namespace SojoBus.Core.ViewModel {
             this.LoadToTakatukiFromKandai = new ReactiveCommand();
             this.LoadToTakatukiFromKandai.Subscribe(x => takatuki.LoadToTakatukiFromKandai(date,3));
 
+            this.TakatukiViaTonda = takatukiViaTonda.ObserveProperty(x => x.Bus).Select(dualBusToString).ToReadOnlyReactiveProperty();
+            this.LoadToKanadaiFromTakatukiViaTonda = new ReactiveCommand();
+            this.LoadToKanadaiFromTakatukiViaTonda.Subscribe(x => takatukiViaTonda.LoadToKandaiFromTakatukiViaTonda(date,6));
+
             this.TondaDetail = tondaDetail.ObserveProperty(x => x.Bus).Select(busToDetailString).ToReadOnlyReactiveProperty();
             this.LoadToKandaiFromTondaDetail = new ReactiveCommand();
             this.LoadToKandaiFromTondaDetail.Subscribe(x => tondaDetail.LoadToKandaiFromTonda(dateOfStartDay));
@@ -84,7 +92,7 @@ namespace SojoBus.Core.ViewModel {
             this.LoadToKanadaiFromTakatukiDetail.Subscribe(x => takatukiDetail.LoadToKandaiFromTakatuki(dateOfStartDay));
             this.LoadToTakatukiFromKandaiDetail = new ReactiveCommand();
             this.LoadToTakatukiFromKandaiDetail.Subscribe(x => takatukiDetail.LoadToTakatukiFromKandai(dateOfStartDay));
-  
+
         }
 
         private string infoToString(bool isSundayOrHoliday,bool isSaturday,bool isWeekday,bool isGakki) {
@@ -122,6 +130,49 @@ namespace SojoBus.Core.ViewModel {
                 sb.AppendLine();
                 sb.Append('↓');
                 sb.AppendLine();
+            }
+            if(sb.Length > 3) {
+                sb.Remove(sb.Length - 3,2);
+            }
+            if(sb.Length == 0) {
+                sb.Append("最終バスの時間を過ぎました");
+            }
+            return sb.ToString();
+        }
+
+        private string dualBusToString(List<Bus> bus) {
+            var sb = new StringBuilder();
+            bool isFirst = true;
+            foreach(var b in bus) {
+                sb.Append($"{b.Time / 100:00}:{b.Time % 100:00} ");
+                sb.AppendLine();
+                if((b.Type & BusType.ViaTonda) == BusType.ViaTonda)
+                    sb.Append("JR高槻駅北発JR富田駅経由");
+                else
+                    sb.Append("JR富田駅発");
+                if((b.Type & BusType.ToRapyuta) == BusType.ToRapyuta)
+                    sb.Append("関西大学行き");
+                if((b.Type & BusType.ToHagitani) == BusType.ToHagitani)
+                    sb.Append("萩谷行き");
+                if((b.Type & BusType.ToHagitaniKouen) == BusType.ToHagitaniKouen)
+                    sb.Append("萩谷総合公園行き");
+                if((b.Type & BusType.ToTakatuki) == BusType.ToTakatuki)
+                    sb.Append("JR高槻駅北行き");
+                if((b.Type & BusType.ToTonda) == BusType.ToTonda)
+                    sb.Append("JR富田駅行き");
+                if((b.Type & BusType.IsTyokkou) == BusType.IsTyokkou)
+                    sb.Append("直行");
+                if(isFirst == false) {
+                    sb.AppendLine();
+                    sb.Append('↓');
+                    sb.AppendLine();
+                    isFirst = true;
+                } else {
+                    sb.AppendLine();
+                    sb.Append('⇒');
+                    sb.AppendLine();
+                    isFirst = false;
+                }
             }
             if(sb.Length > 3) {
                 sb.Remove(sb.Length - 3,2);

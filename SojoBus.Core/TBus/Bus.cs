@@ -96,6 +96,7 @@ namespace SojoBus.Core.TBus {
         internal static List<Bus> GetTakatukiKita() {
             var list = new List<Bus>();
             list.Add(new Bus("0635wr"));
+            list.Add(new Bus("0651ndv"));
             list.Add(new Bus("0723wr"));
             list.Add(new Bus("0755wr"));
             list.Add(new Bus("0800dr"));
@@ -103,6 +104,7 @@ namespace SojoBus.Core.TBus {
             list.Add(new Bus("0808wr"));
             list.Add(new Bus("0813wrg"));
             list.Add(new Bus("0814dr"));
+            list.Add(new Bus("0815whv"));
             list.Add(new Bus("0818wrg"));
             list.Add(new Bus("0822wr"));
             list.Add(new Bus("0826wrge"));
@@ -115,6 +117,7 @@ namespace SojoBus.Core.TBus {
             list.Add(new Bus("0844dr"));
             list.Add(new Bus("0845wrg"));
             list.Add(new Bus("0850nr"));
+            list.Add(new Bus("0851dhv"));
             list.Add(new Bus("0855wr"));
             list.Add(new Bus("0902dr"));
             list.Add(new Bus("0910nr"));
@@ -128,6 +131,7 @@ namespace SojoBus.Core.TBus {
             list.Add(new Bus("0955wdr"));
             list.Add(new Bus("1000wrg"));
             list.Add(new Bus("1005wrge"));
+            list.Add(new Bus("1006rhv"));
             list.Add(new Bus("1010wrg"));
             list.Add(new Bus("1010dnr"));
             list.Add(new Bus("1015wr"));
@@ -141,8 +145,11 @@ namespace SojoBus.Core.TBus {
             list.Add(new Bus("1110dnr"));
             list.Add(new Bus("1115wr"));
             list.Add(new Bus("1130dr"));
+            list.Add(new Bus("1132nhv"));
             list.Add(new Bus("1135wr"));
             list.Add(new Bus("1140nr"));
+            list.Add(new Bus("1140whv"));
+            list.Add(new Bus("1145dhv"));
             list.Add(new Bus("1150wdr"));
             list.Add(new Bus("1205wr"));
             list.Add(new Bus("1210dnr"));
@@ -168,6 +175,7 @@ namespace SojoBus.Core.TBus {
             list.Add(new Bus("1530dr"));
             list.Add(new Bus("1535wr"));
             list.Add(new Bus("1540nr"));
+            list.Add(new Bus("1542whv"));
             list.Add(new Bus("1550wdr"));
             list.Add(new Bus("1605wr"));
             list.Add(new Bus("1610dnr"));
@@ -176,15 +184,20 @@ namespace SojoBus.Core.TBus {
             list.Add(new Bus("1635wr"));
             list.Add(new Bus("1640nr"));
             list.Add(new Bus("1650wdr"));
+            list.Add(new Bus("1702whv"));
             list.Add(new Bus("1705wr"));
             list.Add(new Bus("1710dnr"));
+            list.Add(new Bus("1714dhv"));
             list.Add(new Bus("1720wr"));
             list.Add(new Bus("1730dr"));
             list.Add(new Bus("1735wr"));
             list.Add(new Bus("1750wdr"));
             list.Add(new Bus("1805wr"));
             list.Add(new Bus("1820wr"));
+            list.Add(new Bus("1824whv"));
             list.Add(new Bus("1835wr"));
+            list.Add(new Bus("1836nhv"));
+            list.Add(new Bus("1841dhv"));
             list.Add(new Bus("1850wr"));
             list.Add(new Bus("1905wr"));
             list.Add(new Bus("1920wr"));
@@ -194,7 +207,9 @@ namespace SojoBus.Core.TBus {
             list.Add(new Bus("2030wr"));
             list.Add(new Bus("2050wr"));
             list.Add(new Bus("2100dr"));
+            list.Add(new Bus("2113dhv"));
             list.Add(new Bus("2120wr"));
+            list.Add(new Bus("2136whv"));
             list.Add(new Bus("2150wr"));
             list.Add(new Bus("2301wr"));
             return list;
