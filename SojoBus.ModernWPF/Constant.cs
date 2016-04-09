@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace SojoBus.ModernWPF {
     public class Constant {
-        public const string Version = "1.00";
+        public const string Version = "1.01";
     }
 }

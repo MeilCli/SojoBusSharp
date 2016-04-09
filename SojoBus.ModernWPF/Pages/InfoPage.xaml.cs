@@ -31,5 +31,9 @@ namespace SojoBus.ModernWPF {
         private void load() {
             busViewModel.LoadInfo.Execute();
         }
+
+        private void Button_Click(object sender,RoutedEventArgs e) {
+            load();
+        }
     }
 }

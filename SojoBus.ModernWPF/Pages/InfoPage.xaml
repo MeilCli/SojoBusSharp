@@ -9,6 +9,7 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
+                <Button Content="更新" Click="Button_Click"/>
                 <TextBlock x:Name="info" Text="{Binding Info.Value, Mode=OneWay}" />
             </StackPanel>
         </ScrollViewer>

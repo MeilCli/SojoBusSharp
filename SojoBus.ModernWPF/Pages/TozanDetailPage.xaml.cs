@@ -33,5 +33,9 @@ namespace SojoBus.ModernWPF {
             busViewModel.LoadToKanadaiFromTakatukiDetail.Execute();
             busViewModel.LoadToKandaiFromTondaDetail.Execute();
         }
+
+        private void Button_Click(object sender,RoutedEventArgs e) {
+            load();
+        }
     }
 }

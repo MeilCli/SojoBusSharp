@@ -9,10 +9,13 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
+                <Button Content="更新" Click="Button_Click"/>
                 <TextBlock Text="高槻" Style="{StaticResource Heading2}" />
                 <TextBlock x:Name="takatuki" Text="{Binding Takatuki.Value, Mode=OneWay}" />
                 <TextBlock Text="富田" Style="{StaticResource Heading2}" />
                 <TextBlock x:Name="tonda" Text="{Binding Tonda.Value, Mode=OneWay}" />
+                <TextBlock Text="富田経由高槻" Style="{StaticResource Heading2}" />
+                <TextBlock x:Name="takatuiViaTonda" Text="{Binding TakatukiViaTonda.Value, Mode=OneWay}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

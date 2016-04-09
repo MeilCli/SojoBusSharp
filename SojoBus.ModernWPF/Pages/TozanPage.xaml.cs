@@ -26,12 +26,18 @@ namespace SojoBus.ModernWPF {
             InitializeComponent();
             takatuki.DataContext = busViewModel;
             tonda.DataContext = busViewModel;
+            takatuiViaTonda.DataContext = busViewModel;
             load();
         }
 
         private void load() {
             busViewModel.LoadToKanadaiFromTakatuki.Execute();
             busViewModel.LoadToKandaiFromTonda.Execute();
+            busViewModel.LoadToKanadaiFromTakatukiViaTonda.Execute();
+        }
+
+        private void Button_Click(object sender,RoutedEventArgs e) {
+            load();
         }
     }
 }
