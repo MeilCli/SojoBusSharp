@@ -20,6 +20,7 @@ using Android.Widget;
 using Android.Graphics;
 using Android.Util;
 using Android.Content.Res;
+using System.Collections.Generic;
 
 namespace SojoBus.Android {
     [Activity(Label = "SojoBus#",MainLauncher = true,Icon = "@drawable/Icon")]
@@ -27,7 +28,7 @@ namespace SojoBus.Android {
 
         private BusViewModel busViewModel = new BusViewModel();
         private LicenseViewModel licenseViewModel = new LicenseViewModel();
-        private string licenseMenu= "ライセンス";
+        private string licenseMenu = "ライセンス";
         private int originalViewPagerHeight = 0;
 
         protected override void OnCreate(Bundle bundle) {
@@ -37,11 +38,12 @@ namespace SojoBus.Android {
 
             var toolbar = FindViewById<SupportToolbar>(Resource.Id.Toolbar);
             this.SetSupportActionBar(toolbar);
-            toolbar.SetBinding(x => x.Subtitle,busViewModel.Info);          
+            toolbar.SetBinding(x => x.Subtitle,busViewModel.Info);
 
             var adapter = new BusPagerAdaper(SupportFragmentManager);
             var viewpager = FindViewById<ViewPager>(Resource.Id.ViewPager);
             viewpager.Adapter = adapter;
+            viewpager.CurrentItem = 1;
 
             FindViewById<TabLayout>(Resource.Id.TabLayout).SetupWithViewPager(viewpager);
         }
@@ -63,12 +65,12 @@ namespace SojoBus.Android {
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu) {
-            menu.Add(Menu.None,Menu.First+licenseMenu.GetHashCode(),0,licenseMenu);
+            menu.Add(Menu.None,Menu.First + licenseMenu.GetHashCode(),0,licenseMenu);
             return base.OnCreateOptionsMenu(menu);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item) {
-            if(item.ItemId==Menu.First+licenseMenu.GetHashCode()) {
+            if(item.ItemId == Menu.First + licenseMenu.GetHashCode()) {
                 var builder = new SupportAlertDialog.Builder(this);
                 builder.SetTitle(licenseMenu);
                 builder.SetMessage(licenseViewModel.License.Value);
@@ -91,25 +93,39 @@ namespace SojoBus.Android {
 
     class BusPagerAdaper : FragmentPagerAdapter {
 
-        public BusPagerAdaper(SupportFragmentManager manager) : base(manager) { }
+        private List<BusPage> list = new List<BusPage>();
 
-        public override int Count { get; } = 2;
+        public BusPagerAdaper(SupportFragmentManager manager) : base(manager) {
+            list.Add(new BusPage(BusFragmentType.Hagitani,"富田経由登山"));
+            list.Add(new BusPage(BusFragmentType.Tozan,"登山"));
+            list.Add(new BusPage(BusFragmentType.Gezan,"下山"));
+        }
+
+        public override int Count {
+            get {
+                return list.Count;
+            }
+        }
 
         public override SupportFragment GetItem(int position) {
-            if(position == 0) {
-                return BusFragmentType.Tozan.CreateFrgment();
-            } else {
-                return BusFragmentType.Gezan.CreateFrgment();
-            }
+            return list[position].Type.CreateFrgment();
         }
 
         public override ICharSequence GetPageTitleFormatted(int position) {
-            if(position == 0) {
-                return new JavaString("登山");
-            } else {
-                return new JavaString("下山");
-            }
+            return list[position].Title;
         }
+    }
+
+    class BusPage {
+
+        public BusFragmentType Type { get; }
+        public JavaString Title { get; }
+
+        public BusPage(BusFragmentType type,string title) {
+            this.Type = type;
+            this.Title = new JavaString(title);
+        }
+
     }
 
     class DialogDismiss : Java.Lang.Object, IDialogInterfaceOnClickListener {

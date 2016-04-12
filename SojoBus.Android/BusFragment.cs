@@ -17,16 +17,26 @@ using Reactive.Bindings;
 namespace SojoBus.Android {
 
     public enum BusFragmentType {
-        Tozan = 1, Gezan = 2
+        Tozan = 1, Gezan = 2, Hagitani = 4
     }
 
     public static class BusFragmentTypeExtensions {
         public static Fragment CreateFrgment(this BusFragmentType type) {
-            var fragment = new BusFragment();
-            var bundle = new Bundle();
-            bundle.PutInt(nameof(BusFragmentType),(int)type);
-            fragment.Arguments = bundle;
-            return fragment;
+            switch(type) {
+                case BusFragmentType.Tozan:
+                case BusFragmentType.Gezan: {
+                        var fragment = new BusFragment();
+                        var bundle = new Bundle();
+                        bundle.PutInt(nameof(BusFragmentType),(int)type);
+                        fragment.Arguments = bundle;
+                        return fragment;
+                    }
+                case BusFragmentType.Hagitani: {
+                        var frgment = new HagitaniBusFragment();
+                        return frgment;
+                    }
+            }
+            return null;
         }
     }
 
@@ -49,7 +59,7 @@ namespace SojoBus.Android {
             view.FindViewById<AppCompatTextView>(Resource.Id.TondaDetailText).SetBinding(x => x.Text,busViewModel.TondaDetail);
             if(Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop) {
                 view.FindViewById<View>(Resource.Id.BottomView).Visibility = ViewStates.Visible;
-                if(view.Resources.Configuration.Orientation== global::Android.Content.Res.Orientation.Landscape) {
+                if(view.Resources.Configuration.Orientation == global::Android.Content.Res.Orientation.Landscape) {
                     view.FindViewById<View>(Resource.Id.BottomView2).Visibility = ViewStates.Visible;
                 }
             }
@@ -73,6 +83,41 @@ namespace SojoBus.Android {
                 busViewModel.LoadToTakatukiFromKandaiDetail.Execute();
                 busViewModel.LoadToTondaFromKandaiDetail.Execute();
             }
+        }
+    }
+
+    public class HagitaniBusFragment : Fragment {
+
+        private BusViewModel busViewModel = new BusViewModel();
+
+        public override void OnCreate(Bundle savedInstanceState) {
+            base.OnCreate(savedInstanceState);
+        }
+
+        public override View OnCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
+            View view = inflater.Inflate(Resource.Layout.BusFragment,container,false);
+
+            view.FindViewById<AppCompatTextView>(Resource.Id.TakatukiTitle).Text = "ïxìcåoóRçÇíŒ";
+            view.FindViewById<AppCompatTextView>(Resource.Id.TakatukiText).SetBinding(x => x.Text,busViewModel.TakatukiViaTonda);
+            view.FindViewById<RelativeLayout>(Resource.Id.TondaView).Visibility = ViewStates.Gone;
+            view.FindViewById<View>(Resource.Id.TakatukiDetail).Visibility = ViewStates.Gone;
+            view.FindViewById<View>(Resource.Id.TondaDetail).Visibility = ViewStates.Gone;
+            if(Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop) {
+                view.FindViewById<View>(Resource.Id.BottomView).Visibility = ViewStates.Visible;
+                if(view.Resources.Configuration.Orientation == global::Android.Content.Res.Orientation.Landscape) {
+                    view.FindViewById<View>(Resource.Id.BottomView2).Visibility = ViewStates.Visible;
+                }
+            }
+            return view;
+        }
+
+        public override void OnResume() {
+            base.OnResume();
+            load();
+        }
+
+        private void load() {
+            busViewModel.LoadToKanadaiFromTakatukiViaTonda.Execute();
         }
     }
 }

@@ -48,7 +48,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/TondaView">
                     <android.support.v7.widget.AppCompatTextView
                         android:text="富田"
                         android:id="@+id/TondaTitle"
@@ -74,7 +75,8 @@
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardUseCompatPadding="true">
+            card_view:cardUseCompatPadding="true"
+            android:id="@+id/TakatukiDetail">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,7 +105,8 @@
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardUseCompatPadding="true">
+            card_view:cardUseCompatPadding="true"
+            android:id="@+id/TondaDetail">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
